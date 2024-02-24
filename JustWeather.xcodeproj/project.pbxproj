@@ -3,27 +3,45 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		C1C8FAFE2B8A181B001CA454 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C8FAFD2B8A181B001CA454 /* AppDelegate.swift */; };
 		C1C8FB002B8A181B001CA454 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C8FAFF2B8A181B001CA454 /* SceneDelegate.swift */; };
-		C1C8FB022B8A181B001CA454 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C8FB012B8A181B001CA454 /* ViewController.swift */; };
+		C1C8FB022B8A181B001CA454 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C8FB012B8A181B001CA454 /* WeatherViewController.swift */; };
 		C1C8FB082B8A181B001CA454 /* JustWeather.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C1C8FB062B8A181B001CA454 /* JustWeather.xcdatamodeld */; };
 		C1C8FB0A2B8A181B001CA454 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1C8FB092B8A181B001CA454 /* Assets.xcassets */; };
 		C1C8FB0D2B8A181B001CA454 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1C8FB0B2B8A181B001CA454 /* LaunchScreen.storyboard */; };
+		C1C8FB162B8A1E55001CA454 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C8FB152B8A1E55001CA454 /* Weather.swift */; };
+		C1C8FB182B8A2053001CA454 /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C8FB172B8A2053001CA454 /* Forecast.swift */; };
+		C1C8FB1B2B8A2113001CA454 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C8FB1A2B8A2113001CA454 /* String+Extension.swift */; };
+		C1C8FB1D2B8A2145001CA454 /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C8FB1C2B8A2145001CA454 /* Double+Extension.swift */; };
+		C1C8FB252B8A231F001CA454 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C8FB242B8A231F001CA454 /* WeatherService.swift */; };
+		C1C8FB282B8A2356001CA454 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C8FB272B8A2356001CA454 /* WeatherViewModel.swift */; };
+		C1CFB0AE2B8A5E2C00F2B552 /* ForecastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CFB0AD2B8A5E2C00F2B552 /* ForecastTableViewCell.swift */; };
+		EC2B6BDAA44C869AE3BCB493 /* Pods_JustWeather.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF3AF0E8E4BF7CEF353550C8 /* Pods_JustWeather.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5C1A1DAB820073D6C9137383 /* Pods-JustWeather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JustWeather.release.xcconfig"; path = "Target Support Files/Pods-JustWeather/Pods-JustWeather.release.xcconfig"; sourceTree = "<group>"; };
+		BF3AF0E8E4BF7CEF353550C8 /* Pods_JustWeather.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JustWeather.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1C8FAFA2B8A181B001CA454 /* JustWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JustWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1C8FAFD2B8A181B001CA454 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C1C8FAFF2B8A181B001CA454 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		C1C8FB012B8A181B001CA454 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C1C8FB012B8A181B001CA454 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 		C1C8FB072B8A181B001CA454 /* JustWeather.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JustWeather.xcdatamodel; sourceTree = "<group>"; };
 		C1C8FB092B8A181B001CA454 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C1C8FB0C2B8A181B001CA454 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C1C8FB0E2B8A181B001CA454 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C1C8FB152B8A1E55001CA454 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		C1C8FB172B8A2053001CA454 /* Forecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
+		C1C8FB1A2B8A2113001CA454 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		C1C8FB1C2B8A2145001CA454 /* Double+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
+		C1C8FB242B8A231F001CA454 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
+		C1C8FB272B8A2356001CA454 /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
+		C1CFB0AD2B8A5E2C00F2B552 /* ForecastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastTableViewCell.swift; sourceTree = "<group>"; };
+		E08825C60314A5FD64FC186A /* Pods-JustWeather.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JustWeather.debug.xcconfig"; path = "Target Support Files/Pods-JustWeather/Pods-JustWeather.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +49,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC2B6BDAA44C869AE3BCB493 /* Pods_JustWeather.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1684F18F4E7F58563F745B0D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BF3AF0E8E4BF7CEF353550C8 /* Pods_JustWeather.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BC138DB59A935468BE1A98FF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E08825C60314A5FD64FC186A /* Pods-JustWeather.debug.xcconfig */,
+				5C1A1DAB820073D6C9137383 /* Pods-JustWeather.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		C1C8FAF12B8A181A001CA454 = {
 			isa = PBXGroup;
 			children = (
 				C1C8FAFC2B8A181B001CA454 /* JustWeather */,
 				C1C8FAFB2B8A181B001CA454 /* Products */,
+				BC138DB59A935468BE1A98FF /* Pods */,
+				1684F18F4E7F58563F745B0D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,13 +96,68 @@
 			children = (
 				C1C8FAFD2B8A181B001CA454 /* AppDelegate.swift */,
 				C1C8FAFF2B8A181B001CA454 /* SceneDelegate.swift */,
-				C1C8FB012B8A181B001CA454 /* ViewController.swift */,
+				C1CFB0AF2B8A5EFF00F2B552 /* Controllers */,
+				C1CFB0AC2B8A5E0D00F2B552 /* Views */,
+				C1C8FB262B8A2346001CA454 /* ViewModel */,
+				C1C8FB232B8A2315001CA454 /* Service */,
+				C1C8FB192B8A2105001CA454 /* Extensions */,
+				C1C8FB142B8A192A001CA454 /* Model */,
 				C1C8FB092B8A181B001CA454 /* Assets.xcassets */,
 				C1C8FB0B2B8A181B001CA454 /* LaunchScreen.storyboard */,
 				C1C8FB0E2B8A181B001CA454 /* Info.plist */,
 				C1C8FB062B8A181B001CA454 /* JustWeather.xcdatamodeld */,
 			);
 			path = JustWeather;
+			sourceTree = "<group>";
+		};
+		C1C8FB142B8A192A001CA454 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C1C8FB152B8A1E55001CA454 /* Weather.swift */,
+				C1C8FB172B8A2053001CA454 /* Forecast.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C1C8FB192B8A2105001CA454 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C1C8FB1A2B8A2113001CA454 /* String+Extension.swift */,
+				C1C8FB1C2B8A2145001CA454 /* Double+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C1C8FB232B8A2315001CA454 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				C1C8FB242B8A231F001CA454 /* WeatherService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		C1C8FB262B8A2346001CA454 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C1C8FB272B8A2356001CA454 /* WeatherViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C1CFB0AC2B8A5E0D00F2B552 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C1CFB0AD2B8A5E2C00F2B552 /* ForecastTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C1CFB0AF2B8A5EFF00F2B552 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C1C8FB012B8A181B001CA454 /* WeatherViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +167,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C1C8FB112B8A181B001CA454 /* Build configuration list for PBXNativeTarget "JustWeather" */;
 			buildPhases = (
+				EA11BDC1C481DB05726B233D /* [CP] Check Pods Manifest.lock */,
 				C1C8FAF62B8A181B001CA454 /* Sources */,
 				C1C8FAF72B8A181B001CA454 /* Frameworks */,
 				C1C8FAF82B8A181B001CA454 /* Resources */,
+				05153899E431F7E498E9328C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -103,7 +198,7 @@
 				};
 			};
 			buildConfigurationList = C1C8FAF52B8A181A001CA454 /* Build configuration list for PBXProject "JustWeather" */;
-			compatibilityVersion = "Xcode 14.0";
+			compatibilityVersion = "Xcode 15.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -132,15 +227,64 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		05153899E431F7E498E9328C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-JustWeather/Pods-JustWeather-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-JustWeather/Pods-JustWeather-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JustWeather/Pods-JustWeather-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EA11BDC1C481DB05726B233D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-JustWeather-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C1C8FAF62B8A181B001CA454 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1C8FB022B8A181B001CA454 /* ViewController.swift in Sources */,
+				C1C8FB022B8A181B001CA454 /* WeatherViewController.swift in Sources */,
+				C1C8FB252B8A231F001CA454 /* WeatherService.swift in Sources */,
+				C1C8FB1B2B8A2113001CA454 /* String+Extension.swift in Sources */,
 				C1C8FAFE2B8A181B001CA454 /* AppDelegate.swift in Sources */,
 				C1C8FB082B8A181B001CA454 /* JustWeather.xcdatamodeld in Sources */,
+				C1C8FB282B8A2356001CA454 /* WeatherViewModel.swift in Sources */,
+				C1C8FB1D2B8A2145001CA454 /* Double+Extension.swift in Sources */,
 				C1C8FB002B8A181B001CA454 /* SceneDelegate.swift in Sources */,
+				C1CFB0AE2B8A5E2C00F2B552 /* ForecastTableViewCell.swift in Sources */,
+				C1C8FB182B8A2053001CA454 /* Forecast.swift in Sources */,
+				C1C8FB162B8A1E55001CA454 /* Weather.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,7 +339,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -258,7 +402,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -279,6 +423,7 @@
 		};
 		C1C8FB122B8A181B001CA454 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E08825C60314A5FD64FC186A /* Pods-JustWeather.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -287,6 +432,9 @@
 				DEVELOPMENT_TEAM = M6RSUA6A9T;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = JustWeather/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Allow the app to track your location to provide an accurate forecast.";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Allow the app to track your location to provide an accurate forecast.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allow the app to track your location to provide an accurate forecast.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -299,6 +447,10 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = me.gurbanova.julia.JustWeather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -307,6 +459,7 @@
 		};
 		C1C8FB132B8A181B001CA454 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5C1A1DAB820073D6C9137383 /* Pods-JustWeather.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -315,6 +468,9 @@
 				DEVELOPMENT_TEAM = M6RSUA6A9T;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = JustWeather/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Allow the app to track your location to provide an accurate forecast.";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Allow the app to track your location to provide an accurate forecast.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allow the app to track your location to provide an accurate forecast.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -327,6 +483,10 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = me.gurbanova.julia.JustWeather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

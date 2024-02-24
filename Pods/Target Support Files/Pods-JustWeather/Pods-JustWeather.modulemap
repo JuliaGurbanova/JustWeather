@@ -1,0 +1,6 @@
+framework module Pods_JustWeather {
+  umbrella header "Pods-JustWeather-umbrella.h"
+
+  export *
+  module * { export * }
+}

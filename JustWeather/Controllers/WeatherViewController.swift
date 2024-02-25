@@ -13,7 +13,9 @@ class WeatherViewController: UIViewController {
     private var cancellables: Set<AnyCancellable> = []
     var cityName: String?
     private let viewModel = WeatherViewModel()
-    
+    private let cityService = CityService.shared
+    weak var delegate: CitySearchDelegate?
+
     private let locationLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
@@ -54,23 +56,19 @@ class WeatherViewController: UIViewController {
         tableView.separatorStyle = .none
         return tableView
     }()
-    
-    private let cityListButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "list.bullet"), for: .normal)
-        button.tintColor = .white
-        button.addTarget(self, action: #selector(cityListButtonTapped), for: .touchUpInside)
-        return button
-    }()
-    
-    init() {
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    init(city: String) {
+
+    var isPresentedModally = false
+
+
+    init(city: String, isPresentedModally: Bool = false) {
+        self.isPresentedModally = isPresentedModally
         self.cityName = city
         super.init(nibName: nil, bundle: nil)
     }
+    init() {
+        super.init(nibName: nil, bundle: nil)
+    }
+
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -87,14 +85,19 @@ class WeatherViewController: UIViewController {
         } else {
             loadData()
         }
+
+        if isPresentedModally {
+            navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonTapped))
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
+        }
     }
 
     private func loadData(for city: String? = nil) {
         if let city = city {
-            print("Loading weather for city: \(city)")
+//            print("Loading weather for city: \(city)")
             viewModel.loadWeather(for: city)
         } else {
-            print("Loading weather for coordinates")
+//            print("Loading weather for coordinates")
             viewModel.loadWeather()
         }
     }
@@ -136,27 +139,32 @@ class WeatherViewController: UIViewController {
         view.addSubview(forecastTableView)
         forecastTableView.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalToSuperview()
-            make.top.equalTo(currentWeatherIcon.snp.bottom).offset(20)
+            make.top.equalTo(currentWeatherIcon.snp.bottom).offset(60)
         }
         
-        view.addSubview(cityListButton)
-        cityListButton.snp.makeConstraints { make in
-            make.trailing.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
-            make.width.height.equalTo(40)
-        }
+//        view.addSubview(cityListButton)
+//        cityListButton.snp.makeConstraints { make in
+//            make.trailing.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
+//            make.width.height.equalTo(40)
+//        }
         
         forecastTableView.register(ForecastTableViewCell.self, forCellReuseIdentifier: ForecastTableViewCell.reuseIdentifier)
         forecastTableView.dataSource = self
     }
-    
+
     // MARK: - Actions
-    @objc private func cityListButtonTapped() {
-        let citySearchViewController = CitySearchViewController()
-        let navigationController = UINavigationController(rootViewController: citySearchViewController)
-        navigationController.modalPresentationStyle = .fullScreen
-        present(navigationController, animated: true)
+    @objc private func cancelButtonTapped() {
+        dismiss(animated: true)
     }
-    
+
+    @objc private func addButtonTapped() {
+        if let cityName {
+            cityService.addCity(cityName)
+            delegate?.didAddCity(cityName)
+        }
+        dismiss(animated: true)
+    }
+
     
     private func bindViewModel() {
         viewModel.$currentWeather
@@ -175,7 +183,7 @@ class WeatherViewController: UIViewController {
     
     private func updateCurrentWeatherUI(_ weather: Weather?) {
         guard let weather = weather else {
-            print("weather is nil")
+//            print("weather is nil")
             return }
 
         if let cityName {
@@ -204,5 +212,13 @@ extension WeatherViewController: UITableViewDataSource {
         cell.configure(with: viewModel.forecast[indexPath.row])
 //        print("Configuring cell for index \(indexPath.row)")
         return cell
+    }
+}
+
+extension WeatherViewController: CitySearchDelegate {
+    func didSelectCity(at index: Int) {
+    }
+    
+    func didAddCity(_ city: String) {
     }
 }

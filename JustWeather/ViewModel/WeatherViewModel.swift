@@ -17,7 +17,6 @@ class WeatherViewModel: ObservableObject {
 
     init() {
         setupBindings()
-        print(forecast)
     }
 
     func loadWeather(for city: String? = nil) {

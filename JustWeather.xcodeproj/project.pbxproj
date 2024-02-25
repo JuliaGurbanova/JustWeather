@@ -19,6 +19,7 @@
 		C1C8FB1D2B8A2145001CA454 /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C8FB1C2B8A2145001CA454 /* Double+Extension.swift */; };
 		C1C8FB252B8A231F001CA454 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C8FB242B8A231F001CA454 /* WeatherService.swift */; };
 		C1C8FB282B8A2356001CA454 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C8FB272B8A2356001CA454 /* WeatherViewModel.swift */; };
+		C1CDB6A02B8B5A2000FFD053 /* CitySearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CDB69F2B8B5A2000FFD053 /* CitySearchViewController.swift */; };
 		C1CFB0AE2B8A5E2C00F2B552 /* ForecastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CFB0AD2B8A5E2C00F2B552 /* ForecastTableViewCell.swift */; };
 		EC2B6BDAA44C869AE3BCB493 /* Pods_JustWeather.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF3AF0E8E4BF7CEF353550C8 /* Pods_JustWeather.framework */; };
 /* End PBXBuildFile section */
@@ -40,6 +41,7 @@
 		C1C8FB1C2B8A2145001CA454 /* Double+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
 		C1C8FB242B8A231F001CA454 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 		C1C8FB272B8A2356001CA454 /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
+		C1CDB69F2B8B5A2000FFD053 /* CitySearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitySearchViewController.swift; sourceTree = "<group>"; };
 		C1CFB0AD2B8A5E2C00F2B552 /* ForecastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastTableViewCell.swift; sourceTree = "<group>"; };
 		E08825C60314A5FD64FC186A /* Pods-JustWeather.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JustWeather.debug.xcconfig"; path = "Target Support Files/Pods-JustWeather/Pods-JustWeather.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -156,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				C1C8FB012B8A181B001CA454 /* WeatherViewController.swift */,
+				C1CDB69F2B8B5A2000FFD053 /* CitySearchViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -276,6 +279,7 @@
 			files = (
 				C1C8FB022B8A181B001CA454 /* WeatherViewController.swift in Sources */,
 				C1C8FB252B8A231F001CA454 /* WeatherService.swift in Sources */,
+				C1CDB6A02B8B5A2000FFD053 /* CitySearchViewController.swift in Sources */,
 				C1C8FB1B2B8A2113001CA454 /* String+Extension.swift in Sources */,
 				C1C8FAFE2B8A181B001CA454 /* AppDelegate.swift in Sources */,
 				C1C8FB082B8A181B001CA454 /* JustWeather.xcdatamodeld in Sources */,

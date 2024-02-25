@@ -9,26 +9,37 @@ import Foundation
 import Combine
 
 class WeatherViewModel: ObservableObject {
-    @Published var current: Weather?
+    @Published var currentWeather: Weather?
     @Published var forecast: [Weather] = []
-    
-    private let weatherService: WeatherService
-    
+
+    let weatherService = WeatherService()
     private var cancellables: Set<AnyCancellable> = []
-    
-    init(weatherService: WeatherService) {
-        self.weatherService = weatherService
-        
+
+    init() {
+        setupBindings()
+        print(forecast)
+    }
+
+    func loadWeather(for city: String? = nil) {
+        if let city {
+            weatherService.loadForCity(city)
+        } else {
+            weatherService.requestLocation()
+        }
+    }
+
+    func loadWeather(latitude: Float, longitude: Float) {
+        weatherService.load(latitude: latitude, longitude: longitude)
+    }
+
+    private func setupBindings() {
         weatherService.$current
-            .assign(to: \.current, on: self)
+            .assign(to: \.currentWeather, on: self)
             .store(in: &cancellables)
-        
+
         weatherService.$forecast
             .assign(to: \.forecast, on: self)
             .store(in: &cancellables)
-    }
-    
-    func requestLocation() {
-        weatherService.requestLocation()
+
     }
 }

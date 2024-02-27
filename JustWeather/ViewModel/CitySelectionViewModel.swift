@@ -10,7 +10,7 @@ import Combine
 
 class CitySelectionViewModel {
     @Published var selectedCityIndex: Int?
-
+    
     func selectCity(at index: Int) {
         selectedCityIndex = index
     }

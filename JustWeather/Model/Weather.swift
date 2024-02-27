@@ -14,7 +14,7 @@ struct Weather: Decodable, Identifiable {
     let icon: String
     let temperature: Double
     let feelsLike: Double
-
+    
     enum CodingKeys: String, CodingKey {
         case time = "dt"
         case weather = "weather"
@@ -23,8 +23,8 @@ struct Weather: Decodable, Identifiable {
         case icon = "icon"
         case temperature = "temp"
         case feelsLike = "feels_like"
-     }
-
+    }
+    
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         time = try container.decode(Date.self, forKey: .time)

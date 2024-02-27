@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C1139F8B2B8DD7DD005356E4 /* CitySelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1139F8A2B8DD7DD005356E4 /* CitySelectionViewModel.swift */; };
 		C137EBC82B8BC5C900879AE3 /* CityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C137EBC72B8BC5C900879AE3 /* CityService.swift */; };
 		C137EBCA2B8BDF2D00879AE3 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C137EBC92B8BDF2D00879AE3 /* PageViewController.swift */; };
 		C1C8FAFE2B8A181B001CA454 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C8FAFD2B8A181B001CA454 /* AppDelegate.swift */; };
@@ -29,6 +30,7 @@
 /* Begin PBXFileReference section */
 		5C1A1DAB820073D6C9137383 /* Pods-JustWeather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JustWeather.release.xcconfig"; path = "Target Support Files/Pods-JustWeather/Pods-JustWeather.release.xcconfig"; sourceTree = "<group>"; };
 		BF3AF0E8E4BF7CEF353550C8 /* Pods_JustWeather.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JustWeather.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1139F8A2B8DD7DD005356E4 /* CitySelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitySelectionViewModel.swift; sourceTree = "<group>"; };
 		C137EBC72B8BC5C900879AE3 /* CityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityService.swift; sourceTree = "<group>"; };
 		C137EBC92B8BDF2D00879AE3 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		C1C8FAFA2B8A181B001CA454 /* JustWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JustWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				C1C8FB272B8A2356001CA454 /* WeatherViewModel.swift */,
+				C1139F8A2B8DD7DD005356E4 /* CitySelectionViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 				C1C8FAFE2B8A181B001CA454 /* AppDelegate.swift in Sources */,
 				C137EBC82B8BC5C900879AE3 /* CityService.swift in Sources */,
 				C1C8FB082B8A181B001CA454 /* JustWeather.xcdatamodeld in Sources */,
+				C1139F8B2B8DD7DD005356E4 /* CitySelectionViewModel.swift in Sources */,
 				C1C8FB282B8A2356001CA454 /* WeatherViewModel.swift in Sources */,
 				C1C8FB1D2B8A2145001CA454 /* Double+Extension.swift in Sources */,
 				C1C8FB002B8A181B001CA454 /* SceneDelegate.swift in Sources */,

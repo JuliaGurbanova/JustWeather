@@ -7,14 +7,25 @@
 
 import UIKit
 import SnapKit
+import Combine
 
 class PageViewController: UIPageViewController {
     private var cityService = CityService.shared
     private var orderedViewControllers: [WeatherViewController] = []
 
+    private var cancellables: Set<AnyCancellable> = []
+    private let citySelectionViewModel = CitySelectionViewModel()
+
+    private var currentIndex: Int {
+        guard let currentViewController = viewControllers?.first else {
+            return 0
+        }
+        return orderedViewControllers.firstIndex(of: currentViewController as! WeatherViewController) ?? 0
+    }
+
     private lazy var bottomBar: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(red: 0.4, green: 0.7, blue: 1.0, alpha: 1.0)
+        view.backgroundColor = .background
         return view
     }()
 
@@ -49,18 +60,35 @@ class PageViewController: UIPageViewController {
         dataSource = self
         delegate = self
 
-        // Add current location weather view controller at the beginning
-        let currentLocationViewController = WeatherViewController()
-        orderedViewControllers.append(currentLocationViewController)
-
-        // Add saved cities weather view controllers
-        orderedViewControllers += cityService.savedCities.map { WeatherViewController(city: $0) }
-
-        if let initialViewController = orderedViewControllers.first {
-            setViewControllers([initialViewController], direction: .forward, animated: true, completion: nil)
-        }
-
         configureBottomBar()
+
+        citySelectionViewModel.$selectedCityIndex
+            .sink { [weak self] index in
+                guard let index else { return }
+                self?.navigateToCity(at: index)
+            }
+            .store(in: &cancellables)
+
+        cityService.$savedCities
+        .receive(on: DispatchQueue.main)
+        .sink { [weak self] _ in
+            self?.updateOrderedViewControllers()
+        }
+        .store(in: &cancellables)
+    }
+
+    private func updateOrderedViewControllers() {
+        var updatedViewControllers: [WeatherViewController] = []
+
+        let currentLocationViewController = WeatherViewController()
+        updatedViewControllers.append(currentLocationViewController)
+
+        updatedViewControllers += cityService.savedCities.map { WeatherViewController(city: $0) }
+        orderedViewControllers = updatedViewControllers
+
+        pageControl.numberOfPages = orderedViewControllers.count
+
+        setViewControllers([orderedViewControllers[currentIndex]], direction: .forward, animated: true, completion: nil)
     }
 
     private func configureBottomBar() {
@@ -90,10 +118,31 @@ class PageViewController: UIPageViewController {
     // MARK: - Actions
     @objc private func cityListButtonTapped() {
         let citySearchViewController = CitySearchViewController()
-        citySearchViewController.delegate = self
+        citySearchViewController.citySelectionViewModel = citySelectionViewModel
         let navigationController = UINavigationController(rootViewController: citySearchViewController)
         navigationController.modalPresentationStyle = .fullScreen
         present(navigationController, animated: true)
+    }
+
+    func navigateToCity(at index: Int) {
+        guard index >= 0 && index < orderedViewControllers.count else {
+            return
+        }
+
+        let direction: UIPageViewController.NavigationDirection
+        if index > currentIndex {
+            direction = .forward
+        } else if index < currentIndex {
+            direction = .reverse
+        } else {
+            // If the index is the same, do not perform any navigation
+            return
+        }
+
+        let selectedViewController = orderedViewControllers[index]
+
+        setViewControllers([selectedViewController], direction: direction, animated: true, completion: nil)
+        pageControl.currentPage = index
     }
 }
 
@@ -121,19 +170,5 @@ extension PageViewController: UIPageViewControllerDelegate {
            let index = orderedViewControllers.firstIndex(of: currentViewController as! WeatherViewController) {
             pageControl.currentPage = index
         }
-    }
-}
-
-extension PageViewController: CitySearchDelegate {
-    func didAddCity(_ city: String) {
-    }
-    
-    func didSelectCity(at index: Int) {
-        guard index >= 0, index < orderedViewControllers.count else {
-            return
-        }
-
-        setViewControllers([orderedViewControllers[index]], direction: .forward, animated: true, completion: nil)
-        pageControl.currentPage = index
     }
 }

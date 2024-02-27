@@ -137,6 +137,7 @@ class WeatherService: NSObject, ObservableObject {
                 }
             } receiveValue: { [weak self] currentWeather in
                 self?.current = currentWeather
+                print(currentWeather)
             }
             .store(in: &cancellables)
 
@@ -147,7 +148,7 @@ class WeatherService: NSObject, ObservableObject {
 
         URLSession.shared.dataTaskPublisher(for: URLRequest(url: forecastURL))
             .map(\.data)
-            .decode(type: Forecast.self, decoder: JSONDecoder())
+            .decode(type: Forecast.self, decoder: decoder)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 switch completion {
@@ -158,6 +159,7 @@ class WeatherService: NSObject, ObservableObject {
                 }
             } receiveValue: { [weak self] forecast in
                 self?.forecast = forecast.list
+                print(forecast)
             }
             .store(in: &cancellables)
     }

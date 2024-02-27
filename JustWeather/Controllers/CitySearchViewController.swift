@@ -9,26 +9,25 @@ import UIKit
 import Combine
 import SnapKit
 
-protocol CitySearchDelegate: AnyObject {
-    func didAddCity(_ city: String)
-    func didSelectCity(at index: Int)
-}
-
 class CitySearchViewController: UIViewController {
-    weak var delegate: CitySearchDelegate?
     private var cancellables: Set<AnyCancellable> = []
+    var citySelectionViewModel: CitySelectionViewModel?
 
     private let viewModel = WeatherViewModel()
     let cityService = CityService.shared
+    var didSelectCity: ((Int) -> Void)?
 
     private let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
+        searchBar.backgroundColor = .background
+        searchBar.barTintColor = .background
         searchBar.placeholder = "Search for a city"
         return searchBar
     }()
 
     private let tableView: UITableView = {
         let tableView = UITableView()
+        tableView.backgroundColor = .background
         return tableView
     }()
 
@@ -36,10 +35,11 @@ class CitySearchViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         bindViewModel()
+        observeCityServiceChanges()
     }
 
     private func setupUI() {
-        view.backgroundColor = .blue
+        view.backgroundColor = .background
 
         view.addSubview(searchBar)
         searchBar.snp.makeConstraints { make in
@@ -60,8 +60,16 @@ class CitySearchViewController: UIViewController {
 
     private func bindViewModel() {
         searchBar.delegate = self
-
         viewModel.$currentWeather
+            .sink { [weak self] _ in
+                self?.tableView.reloadData()
+            }
+            .store(in: &cancellables)
+    }
+
+    private func observeCityServiceChanges() {
+        CityService.shared.$savedCities
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 self?.tableView.reloadData()
             }
@@ -72,27 +80,26 @@ class CitySearchViewController: UIViewController {
 extension CitySearchViewController: UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let searchText = searchBar.text {
+            searchBar.resignFirstResponder()
             viewModel.loadWeather(for: searchText)
             presentWeatherViewController(city: searchText)
         }
+        searchBar.text = nil
     }
 
     func presentWeatherViewController(city: String) {
-        print("Presenting WeatherViewController with city: \(city)")
         let weatherViewController = WeatherViewController(city: city, isPresentedModally: true)
-        weatherViewController.delegate = self
         let navigationController = UINavigationController(rootViewController: weatherViewController)
         present(navigationController, animated: true)
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // Number of rows is the count of saved cities plus the current location
         return cityService.savedCities.count + 1
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-
+        cell.backgroundColor = .clear
         if indexPath.row == 0 {
             cell.textLabel?.text = "Current Location: \(viewModel.weatherService.cityName ?? "") - \(viewModel.currentWeather?.temperature.formatted ?? "")°C"
         } else {
@@ -107,7 +114,7 @@ extension CitySearchViewController: UISearchBarDelegate, UITableViewDataSource, 
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedIndex = indexPath.row
-        delegate?.didSelectCity(at: selectedIndex)
+        citySelectionViewModel?.selectCity(at: selectedIndex)
         dismiss(animated: true, completion: nil)
     }
 
@@ -116,27 +123,15 @@ extension CitySearchViewController: UISearchBarDelegate, UITableViewDataSource, 
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        // Don't allow deletion for the "Current Location" row
         guard indexPath.row > 0 else {
-            // Don't allow deletion for the "Current Location" row
             return
         }
 
         if editingStyle == .delete {
             let deletedCity = cityService.savedCities[indexPath.row - 1]
             cityService.removeCity(deletedCity)
-
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
 }
-
-extension CitySearchViewController: CitySearchDelegate {
-    func didAddCity(_ city: String) {
-        tableView.reloadData()
-    }
-
-    func didSelectCity(at index: Int) {
-
-    }
-}
-

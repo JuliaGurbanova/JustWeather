@@ -14,7 +14,6 @@ class WeatherViewController: UIViewController {
     var cityName: String?
     private let viewModel = WeatherViewModel()
     private let cityService = CityService.shared
-    weak var delegate: CitySearchDelegate?
 
     private let locationLabel: UILabel = {
         let label = UILabel()
@@ -52,7 +51,7 @@ class WeatherViewController: UIViewController {
     
     private let forecastTableView: UITableView = {
         let tableView = UITableView()
-        tableView.backgroundColor = .clear
+        tableView.allowsSelection = false
         tableView.separatorStyle = .none
         return tableView
     }()
@@ -88,23 +87,25 @@ class WeatherViewController: UIViewController {
 
         if isPresentedModally {
             navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonTapped))
+            navigationItem.leftBarButtonItem?.tintColor = .white
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
+            navigationItem.rightBarButtonItem?.tintColor = .white
+
         }
     }
 
     private func loadData(for city: String? = nil) {
         if let city = city {
-//            print("Loading weather for city: \(city)")
             viewModel.loadWeather(for: city)
         } else {
-//            print("Loading weather for coordinates")
             viewModel.loadWeather()
         }
     }
 
     private func setupUI() {
-        view.backgroundColor = UIColor(red: 0.4, green: 0.7, blue: 1.0, alpha: 1.0) // Light blue background color
-        
+        view.backgroundColor = UIColor(resource: .background)
+        /*UIColor(red: 0.4, green: 0.7, blue: 1.0, alpha: 1.0) // Light blue background color*/
+
         view.addSubview(locationLabel)
         locationLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
@@ -138,16 +139,15 @@ class WeatherViewController: UIViewController {
         
         view.addSubview(forecastTableView)
         forecastTableView.snp.makeConstraints { make in
-            make.leading.trailing.bottom.equalToSuperview()
+            make.leading.trailing.equalToSuperview().inset(16)
+            make.bottom.equalToSuperview().inset(100)
             make.top.equalTo(currentWeatherIcon.snp.bottom).offset(60)
         }
-        
-//        view.addSubview(cityListButton)
-//        cityListButton.snp.makeConstraints { make in
-//            make.trailing.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
-//            make.width.height.equalTo(40)
-//        }
-        
+
+        forecastTableView.backgroundColor = .white.withAlphaComponent(0.2)
+        forecastTableView.layer.cornerRadius = 10
+        forecastTableView.layer.masksToBounds = true
+
         forecastTableView.register(ForecastTableViewCell.self, forCellReuseIdentifier: ForecastTableViewCell.reuseIdentifier)
         forecastTableView.dataSource = self
     }
@@ -160,7 +160,6 @@ class WeatherViewController: UIViewController {
     @objc private func addButtonTapped() {
         if let cityName {
             cityService.addCity(cityName)
-            delegate?.didAddCity(cityName)
         }
         dismiss(animated: true)
     }
@@ -183,7 +182,6 @@ class WeatherViewController: UIViewController {
     
     private func updateCurrentWeatherUI(_ weather: Weather?) {
         guard let weather = weather else {
-//            print("weather is nil")
             return }
 
         if let cityName {
@@ -191,7 +189,7 @@ class WeatherViewController: UIViewController {
         } else {
             locationLabel.text = "Current Location"
         }
-        dateLabel.text = DateFormatter.localizedString(from: Date(), dateStyle: .medium, timeStyle: .short)
+        dateLabel.text = DateFormatter.localizedString(from: Date(), dateStyle: .medium, timeStyle: .none)
         currentTemperatureLabel.text = "\(weather.temperature.formatted)°C"
         currentWeatherIcon.image = UIImage(systemName: weather.icon.weatherIcon)
         
@@ -203,22 +201,14 @@ class WeatherViewController: UIViewController {
 
 extension WeatherViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        print("Number of forecast items: \(viewModel.forecast.count)")
-        return viewModel.forecast.count
+        return viewModel.dailyForecasts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ForecastTableViewCell.reuseIdentifier, for: indexPath) as! ForecastTableViewCell
-        cell.configure(with: viewModel.forecast[indexPath.row])
-//        print("Configuring cell for index \(indexPath.row)")
+        let dailyForecast = viewModel.dailyForecasts[indexPath.row]
+        cell.configure(with: dailyForecast)
+//        cell.backgroundColor = .white.withAlphaComponent(0.2)
         return cell
-    }
-}
-
-extension WeatherViewController: CitySearchDelegate {
-    func didSelectCity(at index: Int) {
-    }
-    
-    func didAddCity(_ city: String) {
     }
 }

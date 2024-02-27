@@ -11,7 +11,12 @@ import Combine
 class CityService {
     static let shared = CityService()
 
-    @Published var savedCities: [String]
+    @Published var savedCities: [String] {
+        didSet {
+            saveCitiesToUserDefaults()
+            print("Saved cities updated: \(savedCities)")
+        }
+    }
 
     private init() {
         savedCities = UserDefaults.standard.stringArray(forKey: "SavedCities") ?? []
@@ -27,11 +32,9 @@ class CityService {
         }
 
         savedCities.append(city)
-        saveCitiesToUserDefaults()
     }
 
     func removeCity(_ city: String) {
         savedCities.removeAll { $0 == city }
-        saveCitiesToUserDefaults()
     }
 }

@@ -17,7 +17,13 @@ class ForecastTableViewCell: UITableViewCell {
         return label
     }()
 
-    private let temperatureLabel: UILabel = {
+    private let minTemperatureLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        return label
+    }()
+
+    private let maxTemperatureLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         return label
@@ -31,6 +37,7 @@ class ForecastTableViewCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        backgroundColor = .clear
         setupUI()
     }
 
@@ -45,28 +52,33 @@ class ForecastTableViewCell: UITableViewCell {
             make.centerY.equalToSuperview()
         }
 
-        contentView.addSubview(temperatureLabel)
-        temperatureLabel.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().offset(-16)
+        contentView.addSubview(maxTemperatureLabel)
+        maxTemperatureLabel.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().offset(-8)
+            make.centerY.equalToSuperview()
+        }
+
+        contentView.addSubview(minTemperatureLabel)
+        minTemperatureLabel.snp.makeConstraints { make in
+            make.trailing.equalTo(maxTemperatureLabel.snp.leading).offset(-8)
             make.centerY.equalToSuperview()
         }
 
         contentView.addSubview(weatherIcon)
         weatherIcon.snp.makeConstraints { make in
-            make.leading.equalTo(dateTimeLabel.snp.trailing).offset(8)
-            make.trailing.equalTo(temperatureLabel.snp.leading).offset(-8)
+            make.trailing.equalTo(minTemperatureLabel.snp.leading).offset(-16)
             make.centerY.equalToSuperview()
             make.width.height.equalTo(24)
         }
     }
 
-    func configure(with weather: Weather) {
+    func configure(with dailyForecast: DailyForecast) {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM d, HH:mm"
-        dateTimeLabel.text = dateFormatter.string(from: weather.time)
+        dateFormatter.dateStyle = .full
+        dateTimeLabel.text = dateFormatter.string(from: dailyForecast.date)
 
-        temperatureLabel.text = "\(weather.temperature.formatted)°C"
-
-        weatherIcon.image = UIImage(systemName: weather.icon.weatherIcon)
+        minTemperatureLabel.text = "\(dailyForecast.minTemperature.formatted)°C"
+        maxTemperatureLabel.text = "\(dailyForecast.maxTemperature.formatted)°C"
+        weatherIcon.image = UIImage(systemName: dailyForecast.commonIcon.weatherIcon)
     }
 }
